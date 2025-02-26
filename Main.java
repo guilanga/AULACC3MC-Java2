@@ -1,40 +1,4 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 import java.util.Scanner;
-
-class Conta {
-	int num;
-	String nome;
-	double limite;
-	double saldo;
-
-	boolean Sacar(double v) {
-		if (v > (saldo + limite)) {
-			System.out.println("Saldo insuficiente! Você tem R$ "+saldo);
-			return true;
-		}
-		else if (v < 0) {
-			System.out.println("Digite um valor válido");
-			return true;
-		}
-		else {
-			saldo -= v;
-			return false;
-		}
-	}
-
-	void Depositar(double v) {
-		saldo += v;
-	}
-}
-
-
 
 public class Main
 {
@@ -72,23 +36,23 @@ public class Main
 			if (escolha == 1) {
 			    System.out.println("\nNúmero da conta: "+conta.num);
 			    System.out.println("Nome: "+conta.nome);
-			    System.out.println("Limite: "+conta.limite);
-				System.out.println("Saldo: "+conta.saldo);
+			    System.out.println("Limite: R$"+conta.limite);
+				System.out.println("Saldo: R$"+conta.saldo);
 			}
 			else if(escolha == 2) {
 				do {
-					System.out.println("\nEscreva o quanto deseja sacar:");
+					System.out.println("Escreva o quanto deseja sacar:");
 					saque = scan.nextDouble();
 					loop = conta.Sacar(saque);
 				} while (loop == true);
 				loop = true;
-				System.out.println("\nSaldo atual: "+conta.saldo);
+				System.out.println("\nSaldo atual: R$"+conta.saldo);
 			}
 			else if(escolha == 3) {
 				System.out.println("\nEscreva o quanto deseja depositar:");
 				deposito = scan.nextDouble();
 				conta.Depositar(deposito);
-				System.out.println("\nSaldo atual: "+conta.saldo);
+				System.out.println("\nSaldo atual: R$"+conta.saldo);
 			}
 			else if(escolha != 0) {
 				System.out.println("\nEscolha inválida! Digite outro número!");
