@@ -15,12 +15,12 @@ class Conta {
 	double saldo;
 
 	boolean Sacar(double v) {
-		if (v > saldo) {
-			System.out.println("Saldo insuficiente! VocC* tem R$"+saldo);
+		if (v > (saldo + limite)) {
+			System.out.println("Saldo insuficiente! Você tem R$ "+saldo);
 			return true;
 		}
 		else if (v < 0) {
-			System.out.println("Digite um valor vC!lido");
+			System.out.println("Digite um valor válido");
 			return true;
 		}
 		else {
@@ -49,29 +49,37 @@ public class Main
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		Conta conta = new Conta();
-
-		System.out.println("Digite o nC:mero da conta:");
-		conta.num = scan.nextInt();
-
-		System.out.println("Digite o limite da conta:");
-		conta.limite = scan.nextDouble();
-
-		int escolha;
+	    int escolha;
 		double saque;
 		double deposito;
 		conta.saldo = 0;
-		boolean restart;
+		boolean loop;
+
+		System.out.println("Digite o número da conta:");
+		conta.num = scan.nextInt();
+		scan.nextLine();
+		
+        System.out.println("Digite o nome da conta:");
+        conta.nome = scan.nextLine();
+        
+		System.out.println("Digite o limite da conta:");
+		conta.limite = scan.nextDouble();
+        scan.nextLine();
+		
 		do {
 			Menu();
 			escolha = scan.nextInt();
 			if (escolha == 1) {
-				System.out.println("\nSaldo: "+conta.saldo);
+			    System.out.println("\nNúmero da conta: "+conta.num);
+			    System.out.println("Nome: "+conta.nome);
+			    System.out.println("Limite: "+conta.limite);
+				System.out.println("Saldo: "+conta.saldo);
 			}
 			else if(escolha == 2) {
 				do {
 					System.out.println("\nEscreva o quanto deseja sacar:");
 					saque = scan.nextDouble();
-					restart = conta.Sacar(saque);
+					loop = conta.Sacar(saque);
 				} while (loop == true);
 				loop = true;
 				System.out.println("\nSaldo atual: "+conta.saldo);
@@ -80,9 +88,10 @@ public class Main
 				System.out.println("\nEscreva o quanto deseja depositar:");
 				deposito = scan.nextDouble();
 				conta.Depositar(deposito);
+				System.out.println("\nSaldo atual: "+conta.saldo);
 			}
 			else if(escolha != 0) {
-				System.out.println("\nEscolha invC!lida! Digite outro nC:mero!");
+				System.out.println("\nEscolha inválida! Digite outro número!");
 			}
 		} while(escolha != 0);
 
