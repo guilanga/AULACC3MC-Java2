@@ -13,6 +13,7 @@ public class Main
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		Conta conta = new Conta();
+		Cliente cliente = new Cliente();
 	    int escolha;
 		double saque;
 		double deposito;
@@ -24,18 +25,27 @@ public class Main
 		scan.nextLine();
 		
         System.out.println("Digite o nome da conta:");
-        conta.nome = scan.nextLine();
+        cliente.nome = scan.nextLine();
+        
+        System.out.println("Digite o sobrenome da conta:");
+        cliente.sobrenome = scan.nextLine();
+        
+        System.out.println("Digite o CPF da conta:");
+        cliente.cpf = scan.nextLine();
         
 		System.out.println("Digite o limite da conta:");
 		conta.limite = scan.nextDouble();
         scan.nextLine();
+        
+        conta.titular = cliente;
 		
 		do {
 			Menu();
 			escolha = scan.nextInt();
 			if (escolha == 1) {
 			    System.out.println("\nNúmero da conta: "+conta.num);
-			    System.out.println("Nome: "+conta.nome);
+			    System.out.println("Nome: " +conta.titular.nome +" " +conta.titular.sobrenome);
+			    System.out.println("CPF: "+conta.titular.cpf);
 			    System.out.println("Limite: R$"+conta.limite);
 				System.out.println("Saldo: R$"+conta.saldo);
 			}
